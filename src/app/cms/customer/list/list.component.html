@@ -1,0 +1,159 @@
+<div class="container">
+  <div class="search-box">
+    <div class="flex" *ngIf="!!tab.searchObj">
+      <public-search-select
+        *ngIf="!!levels && !!levels.length"
+        [label]="'level_type'"
+        [selectLabel]="'levelId'"
+        [searchObj]="tab.searchObj"
+        [selects]="levels"
+      ></public-search-select>
+
+      <public-search-input
+        [label]="'customer_id'"
+        [textholder]="'import_customer_id'"
+        [selectLabel]="'id'"
+        [searchObj]="tab.searchObj"
+      ></public-search-input>
+
+      <public-search-input
+        [label]="'customer_name'"
+        [textholder]="'import_customer_account'"
+        [selectLabel]="'name'"
+        [searchObj]="tab.searchObj"
+      ></public-search-input>
+
+      <div class="flex">
+        <button
+          (click)="onSearch()"
+          class="button search-btn pb radius-20"
+          [disabled]="!tab.searchObj.check"
+          [ngClass]="{ disable: !tab.searchObj.check }"
+        >
+          <mat-icon svgIcon="search"></mat-icon>
+        </button>
+      </div>
+      <div class="search-action">
+        <button class="button small-icons radius-5 pr-10 pink" (click)="openDialog('insert')">
+          <mat-icon svgIcon="add"></mat-icon>
+          <span>{{ "insert" | translate }}</span>
+        </button>
+        <button class="button small-icons radius-5 pr-10 pink" (click)="openDialog('level')">
+          <mat-icon svgIcon="add"></mat-icon>
+          <span>{{ "level_insert" | translate }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="content-container">
+      <div class="content-main">
+        <table class="table base">
+          <thead>
+            <tr>
+              <th>
+                <div>
+                  <span>{{ "id" | translate }}</span>
+                </div>
+              </th>
+
+              <th class="sticky-col">
+                <div>
+                  <span>{{ "account" | translate }}</span>
+                </div>
+              </th>
+
+              <th>
+                <div>
+                  <span>{{ "name" | translate }}</span>
+                </div>
+              </th>
+
+              <th>
+                <div>
+                  <span>{{ "insert_date" | translate }}</span>
+                </div>
+              </th>
+
+              <th>
+                <div>
+                  <span>{{ "level_type" | translate }}</span>
+                </div>
+              </th>
+
+              <th>
+                <div>
+                  <span>{{ "status" | translate }}</span>
+                </div>
+              </th>
+
+              <th>
+                <div>
+                  <span>{{ "action" | translate }}</span>
+                </div>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody *ngIf="!!result && !!result.length">
+            <ng-container *ngFor="let r of result; let i = index">
+              <tr>
+                <td [attr.data-title]="'id' | translate">
+                  <span>{{ r.id }}</span>
+                </td>
+
+                <td [attr.data-title]="'account' | translate" class="sticky-col">
+                  <span>{{ r.account }}</span>
+                </td>
+
+                <td [attr.data-title]="'name' | translate">
+                  <span>{{ r.name }}</span>
+                </td>
+
+                <td [attr.data-title]="'insert_date' | translate">
+                  <span>{{ r.inserted | pipetime }}</span>
+                </td>
+
+                <td [attr.data-title]="'level_type' | translate">
+                  <span>{{ r.level?.name }}</span>
+                </td>
+
+                <td [attr.data-title]="'status' | translate">
+                  <span>{{ r.status | pipetag: ACCOUNTSTATUS | translate }}</span>
+                </td>
+
+                <td>
+                  <button (click)="openDialog('update', r)" class="button blue pb">
+                    {{ "update" | translate }}
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+          <tbody *ngIf="!result || !result.length">
+            <ng-container *ngTemplateOutlet="empty; context: { $implicit: 7 }"></ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="pages">
+    <mat-paginator
+      *ngIf="!!result && !!result.length"
+      [pageIndex]="tab.pageObj.pageIndex"
+      [length]="tab.pageObj.length"
+      [pageSize]="tab.pageObj.pageSize"
+      [pageSizeOptions]="PAGESIZEOPTIONS"
+      (page)="onSetPage($event)"
+    >
+    </mat-paginator>
+  </div>
+</div>
+<ng-template #empty let-col>
+  <tr>
+    <td [attr.colspan]="col" *ngIf="!isLoadingToggle">
+      <span>{{ "nodata" | translate }}</span>
+    </td>
+    <td [attr.colspan]="col" *ngIf="isLoadingToggle"><app-loading></app-loading></td>
+  </tr>
+</ng-template>

@@ -1,0 +1,14 @@
+.item-wrapper.two.orange > *:first-child {
+  background-color: #ffaa00;
+  color: #fff;
+}
+
+.item-wrapper.two.blue > *:first-child {
+  background-color: #6585b2;
+  color: #fff;
+}
+
+.item-wrapper.two.pink > *:first-child {
+  background-color: #cf9fb3;
+  color: #fff;
+}

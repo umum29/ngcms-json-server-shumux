@@ -1,0 +1,48 @@
+.mat-tab-header,
+.mat-tab-nav-bar {
+  border-bottom: 3px solid #fff;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background: none;
+}
+
+.mat-tab-labels {
+  -webkit-box-align: flex-end;
+  -webkit-align-items: flex-end;
+  -moz-box-align: flex-end;
+  -moz-align-items: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.mat-tab-label.mat-ripple.ng-star-inserted {
+  height: 40px;
+  font-size: medium;
+  opacity: 1;
+  padding: 0 10px;
+  margin-right: -25px;
+  background-color: #b2c2d8;
+  color: #fff;
+  border-radius: 10px 10px 0 0;
+  border: 1px solid #fff;
+}
+
+.mat-tab-label.mat-ripple.ng-star-inserted:last-child {
+  margin-right: 0;
+}
+
+.mat-tab-label.mat-ripple.mat-tab-label-active.ng-star-inserted {
+  background-color: #2c486f;
+  z-index: 9;
+}
+
+.mat-tab-label.mat-ripple.mat-tab-label.ng-star-inserted:hover {
+  background-color: #ffaa00;
+  z-index: 10;
+}
+
+.mat-tab-label.mat-ripple.mat-tab-label.ng-star-inserted:focus {
+  background-color: #2c486f;
+}

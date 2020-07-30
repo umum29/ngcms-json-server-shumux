@@ -1,0 +1,43 @@
+#form {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#form .form-input {
+  display: flex;
+}
+
+#form .form-input > *:first-child {
+  flex: 0 0 100px;
+  padding-right: 50px;
+}
+
+#form .form-input > *:nth-child(2) {
+  flex: 1 1 auto;
+}
+
+#form .form-input > *:last-child {
+  padding: 0 10px;
+  flex: 0 0 200px;
+}
+
+#form .form-input input {
+  width: 100%;
+}
+
+#form .form-input select {
+  width: 150px;
+}
+
+#form .form-action {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+#form .form-action button {
+  margin: 0 20px;
+}

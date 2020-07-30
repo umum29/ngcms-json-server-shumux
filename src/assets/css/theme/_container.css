@@ -1,0 +1,27 @@
+.search {
+  font-size: medium;
+}
+.search select,
+.search input {
+  border-radius: 50px;
+  border: 1px solid #4f4f4f;
+  outline: none;
+  background-color: #fff;
+}
+
+.search select option {
+  background-color: #4f4f4f;
+  color: #fff;
+}
+
+.search .del-search {
+  margin: auto;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  .content-top .table.base {
+    background-color: #1dd3af;
+    color: #fff;
+  }
+}

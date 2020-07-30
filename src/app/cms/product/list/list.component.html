@@ -1,0 +1,148 @@
+<div class="container">
+  <div class="search-box">
+    <div class="flex" *ngIf="!!tab.searchObj">
+      <public-search-select
+        *ngIf="!!types && !!types.length"
+        [label]="'product_type'"
+        [selectLabel]="'typeId'"
+        [searchObj]="tab.searchObj"
+        [selects]="types"
+      ></public-search-select>
+
+      <public-search-select
+        [label]="'status'"
+        [selectLabel]="'status'"
+        [searchObj]="tab.searchObj"
+        [selects]="PRODUCTSTATUS"
+      ></public-search-select>
+
+      <div class="flex">
+        <button (click)="onSearch()" class="button search-btn pb radius-20">
+          <mat-icon svgIcon="search"></mat-icon>
+        </button>
+      </div>
+
+      <div class="search-action">
+        <button class="button small-icons radius-5 pr-10 pink" (click)="openDialog('insert')">
+          <mat-icon svgIcon="add"></mat-icon>
+          <span>{{ "insert" | translate }}</span>
+        </button>
+        <button class="button small-icons radius-5 pr-10 pink" (click)="openDialog('type')">
+          <mat-icon svgIcon="add"></mat-icon>
+          <span>{{ "type_insert" | translate }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="content-container">
+      <div class="content-main">
+        <table class="table base">
+          <thead>
+            <tr>
+              <th>
+                <div>
+                  <span>{{ "id" | translate }}</span>
+                </div>
+              </th>
+
+              <th>
+                <div>
+                  <span>{{ "product_img" | translate }}</span>
+                </div>
+              </th>
+
+              <th>
+                <div>
+                  <span>{{ "product_name" | translate }}</span>
+                </div>
+              </th>
+
+              <th>
+                <div>
+                  <span>{{ "product_type" | translate }}</span>
+                </div>
+              </th>
+
+              <th>
+                <div>
+                  <span>{{ "product_price" | translate }}</span>
+                </div>
+              </th>
+
+              <th>
+                <div>
+                  <span>{{ "status" | translate }}</span>
+                </div>
+              </th>
+
+              <th>
+                <div>
+                  <span>{{ "action" | translate }}</span>
+                </div>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody *ngIf="!!result && !!result.length">
+            <ng-container *ngFor="let r of result; let i = index">
+              <tr>
+                <td [attr.data-title]="'id' | translate">
+                  <span>{{ r.id }}</span>
+                </td>
+
+                <td [attr.data-title]="'product_img' | translate">
+                  <app-preview [imageSrc]="r.file"></app-preview>
+                </td>
+
+                <td [attr.data-title]="'product_name' | translate">
+                  <span>{{ r.name }}</span>
+                </td>
+
+                <td [attr.data-title]="'product_type' | translate">
+                  <span>{{ r.type?.name }}</span>
+                </td>
+
+                <td [attr.data-title]="'product_price' | translate">
+                  <span>{{ r.price }}</span>
+                </td>
+
+                <td [attr.data-title]="'status' | translate">
+                  <span>{{ r.status | pipetag: PRODUCTSTATUS | translate }}</span>
+                </td>
+
+                <td>
+                  <button (click)="openDialog('update', r)" class="button blue pb">
+                    {{ "update" | translate }}
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+          <tbody *ngIf="!result || !result.length">
+            <ng-container *ngTemplateOutlet="empty; context: { $implicit: 7 }"></ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="pages">
+    <mat-paginator
+      *ngIf="!!result && !!result.length"
+      [pageIndex]="tab.pageObj.pageIndex"
+      [length]="tab.pageObj.length"
+      [pageSize]="tab.pageObj.pageSize"
+      [pageSizeOptions]="PAGESIZEOPTIONS"
+      (page)="onSetPage($event)"
+    >
+    </mat-paginator>
+  </div>
+</div>
+<ng-template #empty let-col>
+  <tr>
+    <td [attr.colspan]="col" *ngIf="!isLoadingToggle">
+      <span>{{ "nodata" | translate }}</span>
+    </td>
+    <td [attr.colspan]="col" *ngIf="isLoadingToggle"><app-loading></app-loading></td>
+  </tr>
+</ng-template>

@@ -1,0 +1,55 @@
+<div id="side" [@slideInOut]="animationState">
+  <app-menu></app-menu>
+</div>
+<div class="core-container">
+  <header class="flex space-between">
+    <div>
+      <div
+        class="hamburger hamburger--squeeze"
+        *ngIf="isDevice==='mb'"
+        [ngClass]="{ 'is-active': !isHamburger }"
+        (click)="toggle()"
+      >
+        <div class="hamburger-box">
+          <div class="hamburger-inner"></div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-end" *ngIf="this.isDevice==='pc'">
+      <div class="flex align-center">
+        <button class="button transparent base-icons" (click)="nextUser()">
+          <mat-icon svgIcon="user"></mat-icon>
+          <span class="b">{{ getUserAccount() }}</span>
+        </button>
+      </div>
+
+      <div class="flex align-center text-red" *ngIf="TOGGLELANG">
+        <div class="base-icons">
+          <mat-icon svgIcon="global" (click)="select.open()"></mat-icon>
+          <mat-select
+            #select
+            [value]="service.getNowLang()"
+            (valueChange)="useLanguage($event)"
+            color="red"
+            style="width:100px;"
+            class="b"
+          >
+            <mat-option *ngFor="let lang of LANG" [value]="lang.short" class="b">{{
+              lang.long | translate
+            }}</mat-option>
+          </mat-select>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="flex straight-flex">
+    <app-tab></app-tab>
+    <router-outlet></router-outlet>
+  </main>
+  <footer class="flex">
+    <div class="flex align-center">
+      <mat-icon svgIcon="copyright"></mat-icon>
+      <span>{{ COPYRIGHT }}</span>
+    </div>
+  </footer>
+</div>

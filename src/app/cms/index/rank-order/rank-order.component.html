@@ -1,0 +1,13 @@
+<ngx-charts-bar-horizontal
+  *ngIf="!!rankOrders && !!rankOrders.length"
+  [view]="[innerWidth, innerHeight]"
+  [results]="rankOrders"
+  [xAxis]="true"
+  [yAxis]="true"
+  [barPadding]="40"
+  [xAxisLabel]="'revenue' | translate"
+  [yAxisLabel]="'month' | translate"
+  [showXAxisLabel]="true"
+  [showYAxisLabel]="true"
+>
+</ngx-charts-bar-horizontal>

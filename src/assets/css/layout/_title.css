@@ -1,0 +1,9 @@
+.title {
+  margin-bottom: 10px;
+  height: 40px;
+  border-radius: 5px;
+}
+
+.title span {
+  line-height: 40px;
+}

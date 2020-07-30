@@ -1,0 +1,29 @@
+/* Add application styles & imports to this file! */
+@import '~normalize.css';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~ng-pick-datetime/assets/style/picker.min.css';
+@import '~hamburgers/dist/hamburgers.min.css';
+
+@import './assets/css/_global.css';
+@import './assets/css/layout/_button.css';
+@import './assets/css/layout/_card.css';
+@import './assets/css/layout/_container.css';
+@import './assets/css/layout/_form.css';
+@import './assets/css/layout/_item.css';
+@import './assets/css/layout/_table.css';
+@import './assets/css/layout/_title.css';
+
+@import './assets/css/theme/_button.css';
+@import './assets/css/theme/_card.css';
+@import './assets/css/theme/_container.css';
+@import './assets/css/theme/_item.css';
+@import './assets/css/theme/_table.css';
+@import './assets/css/theme/_title.css';
+
+@import './assets/css/mat/mat-dialog.css';
+@import './assets/css/mat/mat-icon.css';
+@import './assets/css/mat/mat-paginator.css';
+@import './assets/css/mat/mat-select.css';
+@import './assets/css/mat/mat-tab.css';
+
+@import './assets/css/_helper.css';

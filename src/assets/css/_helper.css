@@ -1,0 +1,16 @@
+.sort {
+  cursor: pointer;
+}
+
+.cdk-overlay-container {
+  overflow: auto;
+}
+
+.cdk-overlay-container owl-date-time-container {
+  -webkit-margin-start: 50px;
+}
+
+.menu-item mat-select div.mat-select-trigger div.mat-select-value,
+.menu-item mat-select div.mat-select-trigger div.mat-select-arrow-wrapper > div.mat-select-arrow {
+  color: #fff;
+}

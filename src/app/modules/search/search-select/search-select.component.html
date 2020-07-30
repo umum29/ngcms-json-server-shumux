@@ -1,0 +1,11 @@
+<div class="item-wrapper search">
+  <div>
+    <span>{{ label | translate }}</span>
+  </div>
+  <div *ngIf="!!selects && !!selects.length">
+    <select name="se_status" id="se_status" [(ngModel)]="searchValue" (change)="getSearch()">
+      <option value="" selected>{{ "all" | translate }}</option>
+      <option *ngFor="let s of selects" [value]="s.id">{{ s.name | translate }}</option>
+    </select>
+  </div>
+</div>

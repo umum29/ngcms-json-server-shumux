@@ -1,0 +1,70 @@
+<div *ngIf="!!order">
+  <table class="table base" style="margin-bottom: 10px">
+    <thead>
+      <tr>
+        <th>
+          <span>
+            {{ "product_id" | translate }}
+          </span>
+        </th>
+        <th>
+          <span>
+            {{ "product_name" | translate }}
+          </span>
+        </th>
+        <th>
+          <span>
+            {{ "product_img" | translate }}
+          </span>
+        </th>
+        <th>
+          <span>
+            {{ "product_price" | translate }}
+          </span>
+        </th>
+        <th>
+          <span>
+            {{ "product_amount" | translate }}
+          </span>
+        </th>
+        <th>
+          <span>
+            {{ "product_total" | translate }}
+          </span>
+        </th>
+      </tr>
+    </thead>
+    <tbody *ngIf="!!cars && !!cars.length">
+      <tr *ngFor="let car of cars; let i = index">
+        <ng-container *ngIf="!!car.product">
+          <td [attr.data-title]="'product_id' | translate">
+            <span>{{ car.productId }}</span>
+          </td>
+          <td [attr.data-title]="'product_name' | translate">
+            <span>{{ car.product.name }}</span>
+          </td>
+          <td [attr.data-title]="'product_img' | translate">
+            <app-preview [imageSrc]="car.product.file"></app-preview>
+          </td>
+          <td [attr.data-title]="'product_price' | translate">
+            <span>{{ car.product.price }}</span>
+          </td>
+          <td [attr.data-title]="'product_amount' | translate">
+            <span>{{ car.amount }}</span>
+          </td>
+          <td [attr.data-title]="'product_total' | translate">
+            <span>{{ getSum(i, car.product.price, car.amount) }}</span>
+          </td>
+        </ng-container>
+      </tr>
+      <tr class="total">
+        <td colspan="2">
+          <span>{{ "product_total" | translate }}</span>
+        </td>
+        <td colspan="4" class="text-right">
+          <span>{{ getTotal() }}</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,95 @@
+<form [formGroup]="form">
+  <div mat-dialog-title class="flex center">
+    <mat-icon svgIcon="alert"></mat-icon>
+    <span *ngIf="!data.customer"> {{ "alert_customer_insert" | translate }} </span>
+    <span *ngIf="!!data.customer"> {{ "alert_customer_update" | translate }} </span>
+  </div>
+  <div mat-dialog-content>
+    <div class="item-wrapper two pink" *ngIf="!data.customer">
+      <div>
+        <span>*{{ "account" | translate }}</span>
+      </div>
+      <div>
+        <input
+          type="text"
+          formControlName="account"
+          [placeholder]="'import_account' | translate"
+          required
+        />
+      </div>
+      <validation-messages [control]="form.controls.account"></validation-messages>
+    </div>
+    <div class="item-wrapper two pink" *ngIf="!data.customer">
+      <div>
+        <span> *{{ "password" | translate }} </span>
+      </div>
+      <div>
+        <input
+          type="password"
+          formControlName="password"
+          [placeholder]="'import_password' | translate"
+          required
+        />
+      </div>
+      <validation-messages [control]="form.controls.password"></validation-messages>
+    </div>
+
+    <div class="item-wrapper two pink">
+      <div>
+        <span> *{{ "name" | translate }} </span>
+      </div>
+      <div>
+        <input
+          type="text"
+          formControlName="name"
+          [placeholder]="'import_name' | translate"
+          required
+        />
+      </div>
+      <validation-messages [control]="form.controls.name"></validation-messages>
+    </div>
+
+    <div class="item-wrapper two pink">
+      <div>
+        <span>*{{ "status" | translate }}</span>
+      </div>
+      <div>
+        <select name="se_status" id="se_status" formControlName="status">
+          <option value="" disabled>{{ "select" | translate }}</option>
+          <option *ngFor="let status of ACCOUNTSTATUS" [value]="status.id">{{
+            status.name | translate
+          }}</option>
+        </select>
+      </div>
+      <validation-messages [control]="form.controls.status"></validation-messages>
+    </div>
+
+    <div class="item-wrapper two pink">
+      <div>
+        <span>*{{ "level_type" | translate }}</span>
+      </div>
+      <div>
+        <select name="se_level" id="se_level" formControlName="levelId">
+          <option value="" disabled>{{ "select" | translate }}</option>
+          <option *ngFor="let level of data.levels" [value]="level.id">{{
+            level.name | translate
+          }}</option>
+        </select>
+      </div>
+      <validation-messages [control]="form.controls.levelId"></validation-messages>
+    </div>
+  </div>
+  <div mat-dialog-actions class="flex center">
+    <button (click)="onNoClick()" class="button pb radius-5" style="margin-right:10px;">
+      {{ "cancel" | translate }}
+    </button>
+    <button
+      (click)="onEnter()"
+      [disabled]="!form.valid"
+      [ngClass]="{ disable: !form.valid }"
+      class="button pb pink radius-5"
+    >
+      {{ "enter" | translate }}
+    </button>
+  </div>
+</form>

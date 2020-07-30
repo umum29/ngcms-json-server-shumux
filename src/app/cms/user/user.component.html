@@ -1,0 +1,45 @@
+<div class="container">
+  <div>
+    <mat-card>
+      <div *ngIf="!!user" class="user-items">
+        <div class="item-wrapper two pink">
+          <div>
+            <span>{{ "account" | translate }}</span>
+          </div>
+          <div [attr.data-title]="'account' | translate">
+            <span>{{ user.account }}</span>
+          </div>
+        </div>
+
+        <div class="item-wrapper two pink">
+          <div>
+            <span>{{ "name" | translate }}</span>
+          </div>
+          <div [attr.data-title]="'name' | translate">
+            <span>{{ user.name }}</span>
+          </div>
+        </div>
+
+        <div class="item-wrapper two pink">
+          <div>
+            <span>{{ "password" | translate }}</span>
+          </div>
+          <div [attr.data-title]="'password' | translate">
+            <button class="button pink pb radius-5" (click)="openDialog('password')">
+              {{ "update" | translate }}
+            </button>
+          </div>
+        </div>
+
+        <div class="item-wrapper two pink">
+          <div>
+            <span>{{ "insert_date" | translate }}</span>
+          </div>
+          <div [attr.data-title]="'insert_date' | translate">
+            <span>{{ user.inserted | pipetime }}</span>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

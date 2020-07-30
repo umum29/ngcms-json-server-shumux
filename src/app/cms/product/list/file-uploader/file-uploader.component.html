@@ -1,0 +1,39 @@
+<div class="item-wrapper two pink" [formGroup]="parent">
+  <div>
+    <span>*{{ "upload_img" | translate }}</span>
+  </div>
+  <div class="flex straight-flex uploader-box">
+    <div>
+      <label
+        class="uploader"
+        ondragover="return false;"
+        [class.loaded]="loaded"
+        [style.outlineColor]="dragging ? activeColor : baseColor"
+        (dragenter)="handleDragEnter()"
+        (dragleave)="handleDragLeave()"
+        (drop)="handleDrop($event)"
+      >
+        <i
+          class="icon icon-upload"
+          [style.color]="
+            dragging
+              ? imageSrc.length > 0
+                ? overlayColor
+                : activeColor
+              : imageSrc.length > 0
+              ? overlayColor
+              : baseColor
+          "
+        ></i>
+
+        <img [src]="imageSrc" (load)="handleImageLoad()" [class.loaded]="imageLoaded" />
+      </label>
+    </div>
+    <div>
+      <input type="file" name="file" accept="image/*" (change)="handleInputChange($event)" />
+    </div>
+    <div>
+      <button (click)="cancel()">{{ "clear" | translate }}</button>
+    </div>
+  </div>
+</div>

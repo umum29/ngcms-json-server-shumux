@@ -1,0 +1,56 @@
+<div class="side-box">
+  <div class="side-container">
+    <div class="logo" [style.background-image]="'url(' + LOGOURL + ')'"></div>
+    <div class="menu" *ngIf="!!menu">
+      <div class="menu-items">
+        <ng-container *ngFor="let m of menu">
+          <div class="menu-item" (click)="toggleMenuInfo(m)">
+            <div class="icon" [ngSwitch]="m.name">
+              <mat-icon *ngSwitchCase="'index'" svgIcon="index"></mat-icon>
+              <mat-icon *ngSwitchCase="'user'" svgIcon="user"></mat-icon>
+              <mat-icon *ngSwitchCase="'admin'" svgIcon="admin"></mat-icon>
+              <mat-icon *ngSwitchCase="'customer'" svgIcon="customer"></mat-icon>
+              <mat-icon *ngSwitchCase="'product'" svgIcon="product"></mat-icon>
+              <mat-icon *ngSwitchCase="'order'" svgIcon="order"></mat-icon>
+            </div>
+            <div class="content">
+              <span class="b">{{ m.name + "_manage" | translate }}</span>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <div class="menu-other">
+      <div class="lang" *ngIf="TOGGLELANG && isDevice === 'mb'">
+        <div class="menu-item">
+          <div class="icon">
+            <mat-icon svgIcon="global" (click)="select.open()"></mat-icon>
+          </div>
+          <div class="content">
+            <mat-select
+              #select
+              [value]="getNowLang()"
+              (valueChange)="useLanguage($event)"
+              [panelClass]="'font-white'"
+              class="b"
+            >
+              <mat-option *ngFor="let lang of LANG" [value]="lang.short" class="b">{{
+                lang.long | translate
+              }}</mat-option>
+            </mat-select>
+          </div>
+        </div>
+      </div>
+      <div class="logout" (click)="logout()">
+        <div class="menu-item">
+          <div class="icon">
+            <mat-icon svgIcon="logout"></mat-icon>
+          </div>
+          <div class="content">
+            <span class="b">{{ "logout" | translate }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

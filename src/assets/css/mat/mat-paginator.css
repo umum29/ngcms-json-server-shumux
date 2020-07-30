@@ -1,0 +1,10 @@
+.mat-paginator {
+  background: none;
+  display: block;
+  font-size: 0.8rem;
+}
+
+.mat-paginator,
+.mat-paginator-page-size .mat-select-trigger {
+  color: none;
+}

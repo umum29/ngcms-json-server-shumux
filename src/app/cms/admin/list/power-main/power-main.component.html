@@ -1,0 +1,17 @@
+<div class="container" *ngIf="!!admin">
+  <div class="flex flex-end">
+    <button
+      class="button green pb"
+      *ngIf="toggleUpdate === 'close-update'"
+      (click)="toggleUpdate = 'update'"
+    >
+      {{ "update" | translate }}
+    </button>
+    <button class="button green pb" *ngIf="toggleUpdate === 'update'" (click)="onSave()">
+      {{ "save" | translate }}
+    </button>
+  </div>
+  <div>
+    <app-admin-power [holds]="admin.holds" [toggleUpdate]="toggleUpdate"></app-admin-power>
+  </div>
+</div>

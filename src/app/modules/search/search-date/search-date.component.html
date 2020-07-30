@@ -1,0 +1,80 @@
+<div *ngIf="!toggleMb" class="flex">
+  <div class="item-wrapper search">
+    <div>
+      <span>{{ "search_date" | translate }}</span>
+    </div>
+    <div>
+      <input
+        [placeholder]="'import_date' | translate"
+        [(ngModel)]="startObj.value"
+        [owlDateTimeTrigger]="start"
+        [owlDateTime]="start"
+        #s="ngModel"
+        (dateTimeInput)="setDate('start', s)"
+        required
+      />
+      <owl-date-time #start></owl-date-time>
+      <validation-messages [control]="s" class="tips"></validation-messages>
+    </div>
+  </div>
+
+  <div class="item-wrapper search">
+    <div>
+      <span>~</span>
+    </div>
+    <div>
+      <input
+        [placeholder]="'import_date' | translate"
+        [(ngModel)]="endObj.value"
+        [owlDateTimeTrigger]="end"
+        [owlDateTime]="end"
+        #e="ngModel"
+        [min]="s.value"
+        (dateTimeInput)="setDate('end', e)"
+        required
+      />
+      <owl-date-time #end></owl-date-time>
+      <validation-messages [control]="e" class="tips"></validation-messages>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="toggleMb">
+  <div class="item-wrapper search">
+    <div>
+      <span>{{ "start" | translate }}</span>
+    </div>
+    <div>
+      <input
+        [placeholder]="'import_date' | translate"
+        [(ngModel)]="startObj.value"
+        [owlDateTimeTrigger]="start"
+        [owlDateTime]="start"
+        #s="ngModel"
+        (dateTimeInput)="setDate('start', s)"
+        required
+      />
+      <owl-date-time [pickerMode]="'dialog'" #start></owl-date-time>
+      <validation-messages [control]="s"></validation-messages>
+    </div>
+  </div>
+  <div class="item-wrapper search">
+    <div>
+      <span>{{ "end" | translate }}</span>
+    </div>
+    <div>
+      <input
+        [placeholder]="'import_date' | translate"
+        [(ngModel)]="endObj.value"
+        [owlDateTimeTrigger]="end"
+        [owlDateTime]="end"
+        #e="ngModel"
+        [min]="s.value"
+        (dateTimeInput)="setDate('end', e)"
+        required
+      />
+      <owl-date-time [pickerMode]="'dialog'" #end></owl-date-time>
+      <validation-messages [control]="e"></validation-messages>
+    </div>
+  </div>
+</ng-container>

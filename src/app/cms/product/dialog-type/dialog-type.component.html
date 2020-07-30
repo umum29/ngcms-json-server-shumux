@@ -1,0 +1,57 @@
+<div mat-dialog-title class="flex center">
+  <mat-icon svgIcon="alert"></mat-icon>
+  <span> {{ "alert_product_type" | translate }} </span>
+</div>
+
+<div mat-dialog-content>
+  <div class="flex center">
+    <div style="margin-right:10px;">
+      <input
+        [formControl]="ipContent"
+        [placeholder]="'import_product_type' | translate"
+        style="margin-bottom:5px;"
+      />
+      <validation-messages [control]="ipContent"></validation-messages>
+    </div>
+    <button
+      (click)="onInsert()"
+      class="button pb pink radius insert"
+      style="height: 35px;"
+      [disabled]="!ipContent.valid"
+      [ngClass]="{ disable: !ipContent.valid }"
+    >
+      {{ "insert" | translate }}
+    </button>
+  </div>
+  <div class="flex center">
+    <table class="table base" *ngIf="!!data && !!data.typeNames && !!data.typeNames.length">
+      <tbody>
+        <tr *ngFor="let name of data.typeNames; let i = index">
+          <td class="flex center" class="skin">
+            <span *ngIf="isUpdateNameIndex != i + 1">{{ name }}</span>
+            <input
+              type="text"
+              [value]="name"
+              [hidden]="isUpdateNameIndex != i + 1"
+              style="width:100px"
+              #ipname
+            />
+            <button *ngIf="isUpdateNameIndex != i + 1" (click)="isUpdateNameIndex = i + 1">
+              {{ "update" | translate }}
+            </button>
+            <button *ngIf="isUpdateNameIndex == i + 1" (click)="onSave(i, ipname.value)">
+              {{ "save" | translate }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div mat-dialog-actions class="flex center">
+  <button (click)="onNoClick()" class="button pb radius-5" style="margin-right:10px;">
+    {{ "cancel" | translate }}
+  </button>
+  <button (click)="onEnter()" class="button pb pink radius-5">{{ "enter" | translate }}</button>
+</div>

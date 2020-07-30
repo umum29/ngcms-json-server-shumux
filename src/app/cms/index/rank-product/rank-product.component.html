@@ -1,0 +1,13 @@
+<ngx-charts-bar-vertical
+  *ngIf="!!rankProducts && !!rankProducts.length"
+  [view]="[innerWidth, innerHeight]"
+  [results]="rankProducts"
+  [xAxis]="true"
+  [yAxis]="true"
+  [barPadding]="80"
+  [xAxisLabel]="'product_name' | translate"
+  [yAxisLabel]="'product_amount' | translate"
+  [showXAxisLabel]="true"
+  [showYAxisLabel]="true"
+>
+</ngx-charts-bar-vertical>

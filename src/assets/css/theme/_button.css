@@ -1,0 +1,86 @@
+.button {
+  outline: none;
+  border: none;
+}
+
+.button.disable {
+  color: #fff !important;
+  opacity: 0.5;
+}
+
+button:hover(:not(.transparent)) {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.button.radius-5 {
+  border-radius: 5px;
+}
+
+.button.radius-20 {
+  border-radius: 20px;
+}
+
+.button.pr-10 {
+  padding-right: 10px;
+}
+
+.button.pb {
+  padding: 5px 10px;
+}
+
+/*Base Style*/
+.button {
+  background-color: #fff;
+  color: #2c486f;
+}
+
+.button.transparent {
+  background-color: transparent;
+  color: #2c486f;
+}
+
+.button.pink {
+  background-color: #d5a4a0;
+  color: #fff;
+}
+
+.button.green {
+  background-color: #5f9ea0;
+  color: #fff;
+}
+
+.button.orange {
+  background-color: #ffaa00;
+  color: #333;
+}
+
+.button.blue {
+  background-color: #2c486f;
+  color: #fff;
+}
+
+.button.gray {
+  background-color: #666c6e;
+  color: #fff;
+}
+
+.button.blue:hover,
+.button.blue.active {
+  background-color: #b6999e;
+  color: #fff;
+}
+
+/*Search Style*/
+.button.search-btn {
+  color: #fff;
+  background-color: #4f4f4f;
+  padding: 0 10px;
+  height: 25px;
+  margin: auto;
+}
+
+.button.search-btn:hover {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}

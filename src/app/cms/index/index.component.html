@@ -1,0 +1,8 @@
+<div class="container flex straight-flex">
+  <ng-container *ngIf="!!innerWidth && !!innerHeight">
+    <app-rank-order [innerWidth]="innerWidth" [innerHeight]="innerHeight"></app-rank-order>
+  </ng-container>
+  <ng-container *ngIf="!!innerWidth && !!innerHeight">
+    <app-rank-product [innerWidth]="innerWidth" [innerHeight]="innerHeight"></app-rank-product>
+  </ng-container>
+</div>

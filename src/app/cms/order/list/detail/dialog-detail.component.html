@@ -1,0 +1,151 @@
+<form [formGroup]="form">
+  <div mat-dialog-title class="flex center">
+    <mat-icon svgIcon="alert"></mat-icon>
+    <span *ngIf="!!data && !data.order"> {{ "alert_order_insert" | translate }} </span>
+    <span *ngIf="!!data && !!data.order"> {{ "alert_order_update" | translate }} </span>
+  </div>
+
+  <div mat-dialog-content>
+    <div class="item-wrapper two pink">
+      <div>
+        <span>*{{ "customer_id" | translate }}</span>
+      </div>
+      <div>
+        <input
+          type="text"
+          formControlName="customerId"
+          [placeholder]="'import_customer_id' | translate"
+          (keyup)="setCustomerName($event.target.value)"
+          required
+        />
+      </div>
+      <validation-messages [control]="form.controls.customerId"></validation-messages>
+    </div>
+    <div class="item-wrapper two pink">
+      <div>
+        <span>*{{ "customer_name" | translate }}</span>
+      </div>
+      <div>
+        <span *ngIf="!!customerName">{{ customerName }}</span>
+      </div>
+    </div>
+    <div class="item-wrapper two pink">
+      <div>
+        <span>*{{ "status" | translate }}</span>
+      </div>
+      <div>
+        <select name="se_status" id="se_status" formControlName="status">
+          <option value="" disabled>{{ "select" | translate }}</option>
+          <option *ngFor="let o of ORDERSTATUS" [value]="o.id">{{ o.name | translate }}</option>
+        </select>
+      </div>
+      <validation-messages [control]="form.controls.status"></validation-messages>
+    </div>
+    <table class="table base" style="margin-bottom: 10px" formArrayName="arrs">
+      <thead>
+        <tr>
+          <th>
+            <span>
+              {{ "product_id" | translate }}
+            </span>
+          </th>
+          <th>
+            <span>
+              {{ "product_name" | translate }}
+            </span>
+          </th>
+          <th>
+            <span>
+              {{ "product_img" | translate }}
+            </span>
+          </th>
+          <th>
+            <span>
+              {{ "product_price" | translate }}
+            </span>
+          </th>
+          <th>
+            <span>
+              {{ "product_amount" | translate }}
+            </span>
+          </th>
+          <th>
+            <span>
+              {{ "product_sum" | translate }}
+            </span>
+          </th>
+          <th>
+            <span>
+              {{ "action" | translate }}
+            </span>
+          </th>
+        </tr>
+      </thead>
+      <tbody *ngIf="!!cars && !!arrs && !!arrs.controls">
+        <tr *ngFor="let arr of arrs.controls; let i = index" [formGroupName]="i">
+          <td [attr.data-title]="'productId' | translate">
+            <input
+              type="text"
+              formControlName="productId"
+              (keyup)="setProductData(i, $event.target.value)"
+              class="product"
+            />
+            <validation-messages [control]="arr.controls.productId"></validation-messages>
+          </td>
+          <td *ngIf="!!cars[i] && !!cars[i].product" [attr.data-title]="'productName' | translate">
+            <span>{{ cars[i].product.name }}</span>
+          </td>
+          <td *ngIf="!!cars[i] && !!cars[i].product" [attr.data-title]="'productFile' | translate">
+            <app-preview [imageSrc]="cars[i].product.file"></app-preview>
+          </td>
+          <td *ngIf="!!cars[i] && !!cars[i].product" [attr.data-title]="'productPrice' | translate">
+            <span>{{ cars[i].product.price }}</span>
+          </td>
+          <td [attr.data-title]="'amount' | translate">
+            <input type="text" formControlName="amount" #amount class="product" />
+            <validation-messages [control]="arr.controls.amount"></validation-messages>
+          </td>
+          <td *ngIf="!!cars[i] && !!cars[i].product" [attr.data-title]="'total' | translate">
+            <span>{{ getSum(i, cars[i].product.price, amount.value) }}</span>
+          </td>
+          <td>
+            <button (click)="delArr(i)" class="button blue pb">
+              {{ "delete" | translate }}
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="7">
+            <div class="flex center">
+              <button class="button small-icons radius-5 pr-10 pink" (click)="addArr()">
+                <mat-icon svgIcon="add"></mat-icon>
+                <span>{{ "insert" | translate }}</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr class="total">
+          <td colspan="2">
+            <span>{{ "product_total" | translate }}</span>
+          </td>
+          <td colspan="5" class="text-right">
+            <span>{{ getTotal() }}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div mat-dialog-actions class="flex center">
+    <button (click)="onNoClick()" class="button pb radius-5" style="margin-right:10px;">
+      {{ "cancel" | translate }}
+    </button>
+    <button
+      (click)="onEnter()"
+      [disabled]="!form.valid"
+      [ngClass]="{ disable: !form.valid }"
+      class="button pb pink radius-5"
+    >
+      {{ "enter" | translate }}
+    </button>
+  </div>
+</form>

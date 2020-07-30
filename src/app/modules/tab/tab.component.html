@@ -1,0 +1,16 @@
+<div class="nav-container" *ngIf="!!listTabs && !!listTabs.length">
+  <mat-tab-group [selectedIndex]="selected" (selectedTabChange)="selectTab($event.index)">
+    <ng-template ngFor let-tab [ngForOf]="listTabs" let-index="index">
+      <mat-tab (click)="selectTab(tab)">
+        <ng-template mat-tab-label class="active">
+          <span>{{ getTagName(tab.tag) | translate }}</span>
+          <mat-icon
+            (click)="delTab(index)"
+            svgIcon="cancel"
+            style="margin-left:10px;font-size: small"
+          ></mat-icon>
+        </ng-template>
+      </mat-tab>
+    </ng-template>
+  </mat-tab-group>
+</div>

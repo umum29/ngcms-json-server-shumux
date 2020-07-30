@@ -1,0 +1,8 @@
+.slides > *:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.slides .title {
+  line-height: 40px;
+  font-size: 1rem;
+}

@@ -1,0 +1,92 @@
+.table {
+  min-width: 100%;
+  text-align: center;
+  flex: 0 0 auto;
+}
+
+.table tbody button {
+  margin: 0 2px;
+}
+
+.table th,
+.table td {
+  padding: 5px;
+  word-break: break-all;
+}
+
+.table .sticky-col {
+  position: sticky;
+  left: 0;
+  top: auto;
+}
+
+.table td {
+  height: 30px;
+}
+
+.table td.text-right {
+  text-align: right;
+  padding-right: 20px;
+}
+
+@media only screen and (max-width: 767px) {
+  .table {
+    display: block;
+  }
+  .table thead,
+  .table tbody,
+  .table tfoot,
+  .table th,
+  .table td,
+  .table tr {
+    display: block;
+  }
+
+  .table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .table tbody tr td {
+    height: auto;
+    min-height: 30px;
+    position: relative;
+  }
+
+  .table tbody tr td span,
+  .table tbody tr td a {
+    line-height: 34px;
+  }
+
+  .table td:before {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    line-height: 40px;
+  }
+
+  .table td:before {
+    content: attr(data-title);
+  }
+
+  .table td span.spill {
+    display: inline-block;
+    width: 200px;
+  }
+
+  tfoot tr td {
+    position: relative;
+  }
+
+  /* spec */
+  .content-main .table tr,
+  .rank-container .table tr {
+    border-bottom: 1px solid #ba1830;
+  }
+
+  .content-main .table tr:first-child,
+  .rank-container .table tr:first-child {
+    border-top: 1px solid #ba1830;
+  }
+}

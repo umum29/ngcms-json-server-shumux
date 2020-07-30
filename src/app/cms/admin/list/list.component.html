@@ -1,0 +1,180 @@
+<div class="container">
+  <div class="search-box">
+    <div class="flex">
+      <div class="search-action">
+        <button class="button small-icons radius-5 pr-10 pink" (click)="openInsertDialog()">
+          <mat-icon svgIcon="add"></mat-icon>
+          <span>{{ "insert" | translate }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="content-container">
+      <div class="content-main">
+        <table class="table base">
+          <thead>
+            <tr>
+              <th>
+                <div>
+                  <span>{{ "id" | translate }}</span>
+                </div>
+              </th>
+
+              <th class="sticky-col">
+                <div>
+                  <span>{{ "account" | translate }}</span>
+                </div>
+              </th>
+
+              <th>
+                <div>
+                  <span>{{ "name" | translate }}</span>
+                </div>
+              </th>
+
+              <th>
+                <div>
+                  <span>{{ "insert_date" | translate }}</span>
+                </div>
+              </th>
+
+              <th>
+                <div>
+                  <span>{{ "status" | translate }}</span>
+                </div>
+              </th>
+
+              <th>
+                <div>
+                  <span>{{ "action" | translate }}</span>
+                </div>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody *ngIf="!!result && !!result.length">
+            <ng-container *ngFor="let r of result; let i = index">
+              <tr>
+                <td [attr.data-title]="'id' | translate">
+                  <span>{{ r.id }}</span>
+                </td>
+
+                <td [attr.data-title]="'account' | translate" class="sticky-col">
+                  <span>{{ r.account }}</span>
+                </td>
+
+                <td [attr.data-title]="'name' | translate">
+                  <span
+                    *ngIf="!(clickToggle.atrId == r.id && clickToggle.atrTagSel == 'change-name')"
+                    [attr.change-name]="r.id"
+                    >{{ r.name }}</span
+                  >
+                  <div *ngIf="clickToggle.atrId == r.id && clickToggle.atrTagSel == 'change-name'">
+                    <div class="flex center">
+                      <input [attr.change-name]="r.id" [formControl]="inputVal" cusAutofocus />
+                      <mat-icon
+                        *ngIf="!inputVal.valid"
+                        (click)="clickReset()"
+                        svgIcon="cancel"
+                        style="margin-left:2px;"
+                      ></mat-icon>
+                    </div>
+                    <validation-messages [control]="inputVal"></validation-messages>
+                  </div>
+                </td>
+
+                <td [attr.data-title]="'insert_date' | translate">
+                  <span>{{ r.inserted | pipetime }}</span>
+                </td>
+
+                <td [attr.data-title]="'status' | translate">
+                  <span
+                    *ngIf="!(clickToggle.atrId == r.id && clickToggle.atrTagSel == 'change-status')"
+                    [attr.change-status]="r.id"
+                  >
+                    {{ r.status | pipetag: ACCOUNTSTATUS | translate }}
+                  </span>
+                  <div
+                    *ngIf="clickToggle.atrId == r.id && clickToggle.atrTagSel == 'change-status'"
+                  >
+                    <div class="flex center">
+                      <select
+                        name="se_status"
+                        id="se_status"
+                        [formControl]="inputVal"
+                        [attr.change-status]="r.id"
+                      >
+                        <option value="" disabled>{{ "select" | translate }}</option>
+                        <option
+                          *ngFor="let status of ACCOUNTSTATUS"
+                          [ngValue]="status.id"
+                          [selected]="status.id == r.status"
+                        >
+                          {{ status.name | translate }}
+                        </option>
+                      </select>
+                      <mat-icon
+                        *ngIf="!inputVal.valid"
+                        (click)="clickReset()"
+                        svgIcon="cancel"
+                        style="margin-left:2px;"
+                      ></mat-icon>
+                    </div>
+                    <validation-messages [control]="inputVal"></validation-messages>
+                  </div>
+                </td>
+                <td>
+                  <button
+                    (click)="onOpenChild('power', r)"
+                    class="button blue pb"
+                    [ngClass]="{
+                      active:
+                        childToggle.selectTag == 'power' &&
+                        childToggle.selectId == r[childToggle.selectMarkID]
+                    }"
+                  >
+                    {{ "view_power" | translate }}
+                  </button>
+                </td>
+              </tr>
+              <tr
+                *ngIf="
+                  childToggle.selectTag == 'power' &&
+                  childToggle.selectId == r[childToggle.selectMarkID]
+                "
+              >
+                <td colspan="6" class="skin">
+                  <app-admin-power-main [adminId]="r.id"></app-admin-power-main>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+          <tbody *ngIf="!result || !result.length">
+            <ng-container *ngTemplateOutlet="empty; context: { $implicit: 6 }"></ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="pages">
+    <mat-paginator
+      *ngIf="!!result && !!result.length"
+      [pageIndex]="tab.pageObj.pageIndex"
+      [length]="tab.pageObj.length"
+      [pageSize]="tab.pageObj.pageSize"
+      [pageSizeOptions]="PAGESIZEOPTIONS"
+      (page)="onSetPage($event)"
+    >
+    </mat-paginator>
+  </div>
+</div>
+
+<ng-template #empty let-col>
+  <tr>
+    <td [attr.colspan]="col" *ngIf="!isLoadingToggle">
+      <span>{{ "nodata" | translate }}</span>
+    </td>
+    <td [attr.colspan]="col" *ngIf="isLoadingToggle"><app-loading></app-loading></td>
+  </tr>
+</ng-template>

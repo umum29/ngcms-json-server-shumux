@@ -1,0 +1,15 @@
+<mat-card *ngIf="!!powers">
+  <div class="flex straight-flex slides">
+    <div class="title">
+      {{ "power_setting" | translate }}
+    </div>
+    <ng-container *ngFor="let p of powers">
+      <mat-slide-toggle
+        [(ngModel)]="p.check"
+        [disabled]="toggleUpdate === 'view' || toggleUpdate === 'close-update'"
+      >
+        {{ p.name + "_manage" | translate }}
+      </mat-slide-toggle>
+    </ng-container>
+  </div>
+</mat-card>

@@ -1,0 +1,14 @@
+.base-icons .mat-select .mat-select-value,
+.base-icons .mat-select .mat-select-arrow-wrapper .mat-select-arrow {
+  color: #2c486f !important;
+}
+
+.base-icons:hover .mat-select .mat-select-value,
+.base-icons:hover .mat-select .mat-select-arrow-wrapper .mat-select-arrow {
+  color: #1dd3af !important;
+}
+
+.side .mat-select .mat-select-value,
+.side .mat-select .mat-select-arrow-wrapper .mat-select-arrow {
+  color: #fff !important;
+}

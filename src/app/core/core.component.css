@@ -1,0 +1,87 @@
+#side {
+  flex: 0 0 230px;
+}
+.core-container {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+header .mat-select .mat-select-trigger .mat-select-value,
+header .mat-select .mat-select-arrow-wrapper .mat-select-arrow {
+  color: #2c486f !important;
+}
+
+header {
+  flex: 0 0 50px;
+  background-color: #eeeeee;
+  color: #2c486f;
+}
+
+header > * > * {
+  flex: 1 1 auto;
+  padding-right: 20px;
+}
+
+header > * > *:first-child,
+header > * > *:last-child {
+  flex: 0 1 auto;
+}
+
+header > * > * > * {
+  height: 30px;
+  font-size: 1rem;
+  line-height: 30px;
+  cursor: pointer;
+}
+
+header select {
+  color: #2c486f;
+}
+
+header select option {
+  color: #333;
+  padding: 20px;
+}
+
+main {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 370px;
+  background-color: #eeeeee;
+}
+
+footer {
+  flex: 0 0 35px;
+  color: #2c486f;
+  font-size: 0.6rem;
+  background-color: #eeeeee;
+}
+
+footer > * {
+  margin: auto;
+}
+
+/* base-icons */
+.base-icons {
+  display: flex;
+}
+
+.base-icons > * {
+  font-size: 1rem;
+}
+
+.base-icons > mat-icon.mat-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+}
+
+.base-icons > span {
+  line-height: 30px;
+}
+
+.base-icons:hover {
+  color: #1dd3af;
+}
